@@ -13,9 +13,10 @@
     <v-layout row>
       <v-flex>
         <v-text-field
-          name="search-field"
+          id="userSearch"
+          name="userSearch"
           label="Nome de usuário GitHub aqui!"
-          id="testing"
+          v-model="userSearch"
         ></v-text-field>
       </v-flex>
     </v-layout>
@@ -24,7 +25,7 @@
         <v-btn 
           color="primary"
           large block
-          @click="resultPage">
+          @click="search">
           Pesquisar
         </v-btn>
       </v-flex>
@@ -62,16 +63,27 @@
 <script>
 import involvesLogo from '@/assets/images/logo.png';
 
+const octokit = require('@octokit/rest')({
+  debug: true,
+});
+
 export default {
   name: 'HomePage',
   data() {
     return {
       involvesLogo,
+      userSearch: '',
     };
   },
   methods: {
-    resultPage() {
-      this.$router.push('/result');
+    search() {
+      octokit.users.getForUser({ username: this.userSearch })
+        .then(({ data }) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
