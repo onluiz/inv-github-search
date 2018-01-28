@@ -16,6 +16,7 @@
           name="search-field"
           label="Título"
           id="testing"
+          v-model="note.title"
         ></v-text-field>
       </v-flex>
     </v-layout>
@@ -30,6 +31,7 @@
           name="input-7-1"
           label="Label Text"
           multi-line
+          v-model="note.desc"
         ></v-text-field>
       </v-flex>
     </v-layout>
@@ -37,9 +39,17 @@
       <v-flex>
         <v-btn 
           color="primary"
-          large block>
+          large
+          block
+          @click="saveNote">
           Salvar
         </v-btn>
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex>
+        {{note.title}} <br>
+        {{note.desc}} <br>
       </v-flex>
     </v-layout>
   </v-container>
@@ -48,5 +58,47 @@
 <script>
 export default {
   name: 'NotePage',
+  data() {
+    return {
+      note: {
+        author: '',
+        idUser: '',
+        title: '',
+        desc: '',
+      },
+    };
+  },
+  computed: {
+    userSearch: {
+      get() {
+        return this.$store.state.GlobalModules.SearchModule.user;
+      },
+      set(user) {
+        this.$store.commit('setUser', user);
+      },
+    },
+  },
+  methods: {
+    saveNote() {
+      this.prepareNote();
+      let notes = this.getFromLocalstorage();
+      if (notes) {
+        notes.push(this.note);
+      } else {
+        notes = [];
+        notes.push(this.note);
+      }
+      this.addToLocalstorage(notes);
+    },
+    addToLocalstorage(notes) {
+      localStorage.setItem('notes', JSON.stringify(notes));
+    },
+    getFromLocalstorage() {
+      return JSON.parse(localStorage.getItem('notes'));
+    },
+    prepareNote() {
+      this.note.idUser = this.userSearch.id;
+    },
+  },
 };
 </script>

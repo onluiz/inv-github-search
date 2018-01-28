@@ -26,7 +26,7 @@ export default new Router({
       component: NotePage,
     },
     {
-      path: '/repos',
+      path: '/repos/',
       name: 'ReposPage',
       component: ReposPage,
     },

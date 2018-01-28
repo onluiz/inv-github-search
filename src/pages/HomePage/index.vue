@@ -1,89 +1,104 @@
 <template>
   <v-container fluid>
-    <v-layout row>
-      <v-flex>
-        <img :src="involvesLogo" alt="">
+    <div v-if="userSearch.id === 0">
+      <v-layout row>
+        <v-flex>
+          <img :src="involvesLogo" alt="">
+        </v-flex>
+      </v-layout>
+      <v-layout row>
+        <v-flex>
+          <h2>Digite um nome de usuário do GitHub e clique em "Pesquisar" =)</h2>
+        </v-flex>
+      </v-layout>
+      <v-layout row>
+        <v-flex>
+          <v-text-field
+            id="userSearch"
+            name="userSearch"
+            label="Nome de usuário GitHub aqui!"
+            v-model="searchText"
+          ></v-text-field>
+        </v-flex>
+      </v-layout>
+      <v-layout row>
+        <v-flex>
+          <v-btn 
+            color="primary"
+            large block
+            @click="search">
+            Pesquisar
+          </v-btn>
+        </v-flex>
+      </v-layout>
+    </div>
+    <div v-if="userSearch.id > 0">
+      <v-layout row>
+        <v-flex>
+          <h2>Resultados:</h2>
+        </v-flex>
+      </v-layout>
+      <v-layout row>
+        <v-flex xs12 sm6 offset-sm3>
+        <user-card></user-card>
       </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex>
-        <h2>Digite um nome de usuário do GitHub e clique em "Pesquisar" =)</h2>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex>
-        <v-text-field
-          id="userSearch"
-          name="userSearch"
-          label="Nome de usuário GitHub aqui!"
-          v-model="userSearch"
-        ></v-text-field>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex>
-        <v-btn 
-          color="primary"
-          large block
-          @click="search">
-          Pesquisar
-        </v-btn>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex>
-        <h2>Resultados:</h2>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex xs12 sm6 offset-sm3>
-      <v-card>
-        <v-card-media src="/static/doc-images/cards/desert.jpg" height="200px">
-        </v-card-media>
-        <v-card-title primary-title>
-          <div>
-            <h3 class="headline mb-0">Luiz Alberto</h3>
-            <div>
-              10 Repositórios <br>
-              37 Seguidores <br>
-              22 Estrelas <br>
-            </div>
-          </div>
-        </v-card-title>
-        <v-card-actions>
-          <v-btn flat color="orange">Repositórios</v-btn>
-          <v-btn flat color="orange">Anotações</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-    </v-layout>
+      </v-layout>
+      <v-layout row>
+        <v-flex>
+          <v-btn 
+            color="primary"
+            large block
+            @click="clean">
+            Limpar Pesquisa
+          </v-btn>
+        </v-flex>
+      </v-layout>
+    </div>
   </v-container>
 </template>
 
 <script>
 import involvesLogo from '@/assets/images/logo.png';
+import UserCard from '../../components/UserCard';
 
-const octokit = require('@octokit/rest')({
-  debug: true,
-});
+const octokit = require('@octokit/rest')();
 
 export default {
   name: 'HomePage',
+  components: {
+    UserCard,
+  },
   data() {
     return {
       involvesLogo,
-      userSearch: '',
+      searchText: 'onluiz',
     };
+  },
+  computed: {
+    userSearch: {
+      get() {
+        return this.$store.state.GlobalModules.SearchModule.user;
+      },
+      set(user) {
+        this.$store.commit('setUser', user);
+      },
+    },
   },
   methods: {
     search() {
-      octokit.users.getForUser({ username: this.userSearch })
+      octokit.users.getForUser({ username: this.searchText })
         .then(({ data }) => {
-          console.log(data);
+          this.userSearch = data;
+          this.$store.commit('openSnackBar', '12344');
         })
         .catch((err) => {
-          console.log(err);
+          // eslint-disable-next-line
+          console.log('err', err);
+          this.$store.commit('openSnackBar');
         });
+    },
+    clean() {
+      this.$store.commit('cleanUser');
     },
   },
 };
