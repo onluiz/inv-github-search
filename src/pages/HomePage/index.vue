@@ -34,11 +34,6 @@
     </div>
     <div v-if="userSearch.id > 0">
       <v-layout row>
-        <v-flex>
-          <h2>Resultados:</h2>
-        </v-flex>
-      </v-layout>
-      <v-layout row>
         <v-flex xs12 sm6 offset-sm3>
         <user-card></user-card>
       </v-flex>
@@ -61,8 +56,6 @@
 import involvesLogo from '@/assets/images/logo.png';
 import UserCard from '../../components/UserCard';
 
-const octokit = require('@octokit/rest')();
-
 export default {
   name: 'HomePage',
   components: {
@@ -75,27 +68,13 @@ export default {
     };
   },
   computed: {
-    userSearch: {
-      get() {
-        return this.$store.state.GlobalModules.SearchModule.user;
-      },
-      set(user) {
-        this.$store.commit('setUser', user);
-      },
+    userSearch() {
+      return this.$store.state.GlobalModules.SearchModule.user;
     },
   },
   methods: {
     search() {
-      octokit.users.getForUser({ username: this.searchText })
-        .then(({ data }) => {
-          this.userSearch = data;
-          this.$store.commit('openSnackBar', '12344');
-        })
-        .catch((err) => {
-          // eslint-disable-next-line
-          console.log('err', err);
-          this.$store.commit('openSnackBar');
-        });
+      this.$store.dispatch('setUser', this.searchText);
     },
     clean() {
       this.$store.commit('cleanUser');

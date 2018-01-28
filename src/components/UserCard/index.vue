@@ -13,8 +13,8 @@
       </div>
     </v-card-title>
     <v-card-actions>
-      <v-btn flat color="orange" @click="openRepos">Repositórios</v-btn>
-      <v-btn flat color="orange">Anotações</v-btn>
+      <v-btn flat color="orange" @click="openPage('/repos')">Repositórios</v-btn>
+      <v-btn flat color="orange" @click="openPage('/notes')">Anotações</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -37,8 +37,8 @@ export default {
     },
   },
   methods: {
-    openRepos() {
-      this.$router.push('/repos');
+    openPage(page) {
+      this.$router.push(page);
     },
   },
 };

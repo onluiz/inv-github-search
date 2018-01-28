@@ -20,36 +20,35 @@
         <h2>Anotações</h2>
       </v-flex>
     </v-layout>
-
     <v-layout row>
       <v-flex>
-        <v-card color="cyan darken-2" class="white--text">
-            <v-container fluid grid-list-lg>
-              <v-layout row>
-                <v-flex>
-                  <div>
-                    <div class="headline">Título</div>
-                    <div>
-                      Bons repositórios, mas precisa
-                      contribuir mais para projetos open source.
-                    </div>
-                  </div>
-                </v-flex>
-              </v-layout>
-            </v-container>
-          </v-card>
+        <note-card v-for="(note, i) in notes" :key="i" :note="note"></note-card>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import notesLib from '@/libs/notes-lib';
+import NoteCard from '../../components/NoteCard';
+
 export default {
   name: 'NotesPage',
+  components: {
+    NoteCard,
+  },
   methods: {
     newNote() {
       this.$router.push('/notes/new');
     },
+  },
+  data() {
+    return {
+      notes: [],
+    };
+  },
+  beforeMount() {
+    this.notes = notesLib.getNotes();
   },
 };
 </script>

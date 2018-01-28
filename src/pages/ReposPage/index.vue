@@ -10,13 +10,21 @@
         <repo-card v-for="repo in reposSearch" v-bind:key="repo.id" :repo="repo"></repo-card>
       </v-flex>
     </v-layout>
+    <v-layout row>
+      <v-flex>
+        <v-btn 
+          color="primary"
+          large block
+          @click="nextPage">
+          Carregar Mais
+        </v-btn>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
 <script>
 import RepoCard from '../../components/RepoCard';
-
-const octokit = require('@octokit/rest')();
 
 export default {
   name: 'ReposPage',
@@ -24,34 +32,23 @@ export default {
     RepoCard,
   },
   computed: {
-    userSearch: {
-      get() {
-        return this.$store.state.GlobalModules.SearchModule.user;
-      },
-      set(user) {
-        this.$store.commit('setUser', user);
-      },
+    userSearch() {
+      return this.$store.state.GlobalModules.SearchModule.user;
     },
-    reposSearch: {
-      get() {
-        return this.$store.state.GlobalModules.SearchModule.user.repos;
-      },
-      set(repos) {
-        this.$store.commit('setUserRepos', repos);
-      },
+    reposSearch() {
+      return this.$store.state.GlobalModules.SearchModule.user.repos;
     },
   },
-  beforeMount() {
-    octokit.repos.getForUser({ username: this.userSearch.login })
-      .then(({ data }) => {
-        this.reposSearch = data;
-        this.$store.commit('openSnackBar', '1234');
-      })
-      .catch((err) => {
-        // eslint-disable-next-line
-        console.log('err', err);
-        this.$store.commit('openSnackBar');
-      });
+  mounted() {
+    this.$store.dispatch('setUserRepos');
+  },
+  methods: {
+    nextPage() {
+      this.$store.dispatch('nextReposPage');
+    },
+    previousPage() {
+      this.$store.dispatch('previousReposPage');
+    },
   },
 };
 </script>
