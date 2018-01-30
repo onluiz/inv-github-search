@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+    <v-btn color="orange" @click="$router.push('/perfil')">Voltar</v-btn>
     <v-layout row>
       <v-flex>
         <h2>Usuário: Luiz Alberto</h2>
