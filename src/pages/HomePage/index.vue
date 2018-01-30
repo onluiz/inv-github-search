@@ -1,14 +1,14 @@
 <template>
   <v-container fluid>
-    <div v-if="userSearch.id === 0">
+    <div>
       <v-layout row>
         <v-flex>
-          <img :src="involvesLogo" alt="">
+          <h1>Inicio</h1>
         </v-flex>
       </v-layout>
       <v-layout row>
         <v-flex>
-          <h2>Digite um nome de usuário do GitHub e clique em "Pesquisar" =)</h2>
+          <h2>Digite um nome de usuário do GitHub =)</h2>
         </v-flex>
       </v-layout>
       <v-layout row>
@@ -24,7 +24,7 @@
       <v-layout row>
         <v-flex>
           <v-btn 
-            color="primary"
+            color="orange"
             large block
             @click="search">
             Pesquisar
@@ -32,38 +32,26 @@
         </v-flex>
       </v-layout>
     </div>
-    <div v-if="userSearch.id > 0">
-      <v-layout row>
-        <v-flex xs12 sm6 offset-sm3>
-        <user-card></user-card>
-      </v-flex>
-      </v-layout>
-      <v-layout row>
-        <v-flex>
-          <v-btn 
-            color="primary"
-            large block
-            @click="clean">
-            Limpar Pesquisa
-          </v-btn>
-        </v-flex>
-      </v-layout>
-    </div>
+    <results-section></results-section>
   </v-container>
 </template>
 
 <script>
-import involvesLogo from '@/assets/images/logo.png';
-import UserCard from '../../components/UserCard';
+/* eslint-disable */
+import axios from 'axios';
+import UserCard from '@/components/UserCard';
+import UserMiniCard from '@/components/UserMiniCard';
+import ResultsSection from './sections/ResultsSection';
 
 export default {
   name: 'HomePage',
   components: {
     UserCard,
+    UserMiniCard,
+    ResultsSection,
   },
   data() {
     return {
-      involvesLogo,
       searchText: 'onluiz',
     };
   },
@@ -79,6 +67,14 @@ export default {
     clean() {
       this.$store.commit('cleanUser');
     },
+  },
+  props: {
+    code: String,
+  },
+  mounted() {
+    if (this.code) {
+      this.$store.dispatch('exchangeForToken', this.code);
+    }
   },
 };
 </script>

@@ -1,16 +1,16 @@
-const localstorage = (() => {
-  const addToLocalstorage = (key, item) => {
-    localStorage.setItem(key, JSON.stringify(item));
-  };
+import ls from '@/libs/localstorage-lib';
 
-  const getFromLocalstorage = key => JSON.parse(localStorage.getItem(key));
-
-  const getNotes = () => getFromLocalstorage('notes');
-
-  const addNotes = (notes) => {
-    addToLocalstorage('notes', notes);
-  };
-
+/**
+ * @description Lib para a gestão das notas
+ * que o usuário do app adiciona no localstorage.
+ * Futuramente ela pode ser descontinuada caso
+ * esses dados passem a ser armazenados em um
+ * banco de dados.
+ * @author Luiz Alberto (onluiz)
+ */
+const notesLib = (() => {
+  const getNotes = () => ls.getItem('notes');
+  const addNotes = notes => ls.addItem('notes', notes);
   const addNote = (note, callback) => {
     let notes = getNotes();
     if (notes) {
@@ -29,4 +29,4 @@ const localstorage = (() => {
   };
 })();
 
-export default localstorage;
+export default notesLib;

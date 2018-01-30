@@ -47,7 +47,7 @@ export default {
       notes: [],
     };
   },
-  beforeMount() {
+  mounted() {
     this.notes = notesLib.getNotes();
   },
 };
