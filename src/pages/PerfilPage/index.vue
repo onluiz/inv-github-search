@@ -1,6 +1,8 @@
 <template>
   <div>
-    PerfilPage {{userSearch.name}}
+    <img :src="userSearch.avatar_url" />
+
+    informacoes e mais informacoes aqui
   </div>
 </template>
 
