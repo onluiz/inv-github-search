@@ -1,6 +1,7 @@
 <template>
   <v-container fluid>
-    <v-btn color="orange" @click="$router.push('/perfil')">Voltar</v-btn>
+    <back-to v-if="userSearch.id > 0" page="/perfil" title="Perfil"></back-to>
+    <back-to v-if="userSearch.id === 0" page="/" title="Inicio"></back-to>
     <v-layout row>
       <v-flex>
         <h2>Usuário: Luiz Alberto</h2>
@@ -31,12 +32,14 @@
 
 <script>
 import notesLib from '@/libs/notes-lib';
-import NoteCard from '../../components/NoteCard';
+import BackTo from '@/components/Navigation/BackTo';
+import NoteCard from '@/components/NoteCard';
 
 export default {
   name: 'NotesPage',
   components: {
     NoteCard,
+    BackTo,
   },
   methods: {
     newNote() {
@@ -47,6 +50,11 @@ export default {
     return {
       notes: [],
     };
+  },
+  computed: {
+    userSearch() {
+      return this.$store.state.GlobalModules.SearchModule.user;
+    },
   },
   mounted() {
     this.notes = notesLib.getNotes();

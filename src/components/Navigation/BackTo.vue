@@ -1,12 +1,12 @@
 <template>
   <v-layout row>
     <v-flex>
-      <h1>
+      <h3>
         <v-btn icon color="orange" @click="openPage()">
           <v-icon>arrow_back</v-icon>
         </v-btn>
-        Perfil
-      </h1>
+        Voltar para <b>{{ title }}</b>
+      </h3>
     </v-flex>
   </v-layout>
 </template>
@@ -18,6 +18,10 @@ export default {
     page: {
       type: String,
       default: '/',
+    },
+    title: {
+      type: String,
+      required: true,
     },
   },
   methods: {

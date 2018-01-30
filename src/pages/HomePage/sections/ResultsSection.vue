@@ -1,7 +1,9 @@
 <template>
   <div>
-    <user-mini-card v-if="userSearch.id > 0"></user-mini-card>
-    <h2 v-if="userSearch.id === 0">Nenhum resultado filtrado ainda :/</h2>
+    <div v-if="userSearch.id > 0">
+      <h3>Usuário Encontrado:</h3>
+      <user-mini-card></user-mini-card>
+    </div>
   </div>
 </template>
 

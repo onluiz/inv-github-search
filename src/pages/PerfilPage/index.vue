@@ -1,6 +1,7 @@
 <template>
   <v-container>
-    <back-to page="/"></back-to>
+    <back-to page="/" title="Inicio"></back-to>
+    <h2>Perfil de {{ userSearch.name }}</h2>
     <img :src="userSearch.avatar_url" class="l-avatar"/>
     <v-card>
       <v-card-title>

@@ -1,9 +1,9 @@
 <template>
   <v-container fluid>
-    <v-btn color="orange" @click="$router.push('/perfil')">Voltar</v-btn>
+    <back-to page="/perfil" title="Perfil"></back-to>
     <v-layout row>
       <v-flex>
-        <h2>Repositórios do usuário Luiz Alberto</h2>
+        <h2>Repositórios de {{ userSearch.login }}</h2>
       </v-flex>
     </v-layout>
     <v-layout row>
@@ -25,12 +25,14 @@
 </template>
 
 <script>
-import RepoCard from '../../components/RepoCard';
+import BackTo from '@/components/Navigation/BackTo';
+import RepoCard from '@/components/RepoCard';
 
 export default {
   name: 'ReposPage',
   components: {
     RepoCard,
+    BackTo,
   },
   computed: {
     userSearch() {
