@@ -8,11 +8,6 @@
       </v-layout>
       <v-layout row>
         <v-flex>
-          <h2>Digite um nome de usuário do GitHub =)</h2>
-        </v-flex>
-      </v-layout>
-      <v-layout row>
-        <v-flex>
           <v-text-field
             id="userSearch"
             name="userSearch"
