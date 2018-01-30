@@ -19,7 +19,7 @@
     </v-container>
     <v-card-actions>
       <v-btn color="orange" @click="openPage('/perfil')">Abrir Perfil</v-btn>
-      <v-btn color="orange">Limpar Pesquisa</v-btn>
+      <v-btn color="orange" @click="clean">Limpar Pesquisa</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -35,6 +35,9 @@ export default {
   methods: {
     openPage(page) {
       this.$router.push(page);
+    },
+    clean() {
+      this.$store.commit('cleanUser');
     },
   },
 };
