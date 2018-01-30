@@ -20,15 +20,8 @@
 </template>
 
 <script>
-import logoInvolves from '@/assets/images/logo.png';
-
 export default {
   name: 'UserCard',
-  data() {
-    return {
-      logoInvolves,
-    };
-  },
   computed: {
     user: {
       get() {
