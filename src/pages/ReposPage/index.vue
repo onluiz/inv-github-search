@@ -14,7 +14,7 @@
     <v-layout row>
       <v-flex>
         <v-btn 
-          color="primary"
+          color="orange"
           large block
           @click="nextPage">
           Carregar Mais

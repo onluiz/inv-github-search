@@ -2,11 +2,14 @@
   <v-container fluid>
     <back-to v-if="userSearch.id > 0" page="/perfil" title="Perfil"></back-to>
     <back-to v-if="userSearch.id === 0" page="/" title="Inicio"></back-to>
-    <v-layout row>
-      <v-flex>
-        <h2>Usuário: Luiz Alberto</h2>
-      </v-flex>
-    </v-layout>
+    <v-btn
+              color="pink"
+              fab
+              left
+            >
+              <v-icon>add</v-icon>
+            </v-btn>
+    <h2>Notas para {{ userSearch.login }}</h2>
     <v-layout row>
       <v-flex>
         <v-btn 

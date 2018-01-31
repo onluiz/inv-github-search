@@ -12,6 +12,14 @@
         </v-flex>
       </v-layout>
     </v-container>
+    <v-card-actions>
+      <v-btn color="orange" icon class="hidden-md-and-up"><v-icon>delete</v-icon></v-btn>
+      <v-btn 
+        color="orange" 
+        class="hidden-sm-and-down">
+          <v-icon>delete</v-icon> Remover Nota
+        </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
