@@ -3,7 +3,9 @@
     <back-to page="/perfil" title="Perfil"></back-to>
     <v-layout row>
       <v-flex>
-        <h2>Repositórios de {{ userSearch.login }}</h2>
+        <h2>
+          <v-icon>dashboard</v-icon>Repositórios de {{ userSearch.login }}
+        </h2>
       </v-flex>
     </v-layout>
     <v-layout row>

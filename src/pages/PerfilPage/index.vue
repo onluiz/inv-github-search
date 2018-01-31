@@ -14,8 +14,12 @@
         Seguindo: {{ userSearch.following }} <br>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="orange" @click="openPage('/repos')">Abrir Repositórios</v-btn>
-        <v-btn color="orange" @click="openPage('/notes')">Abrir Notas</v-btn>
+        <v-btn color="orange" @click="openPage('/repos')">
+          <v-icon>dashboard</v-icon> Abrir Repositórios
+        </v-btn>
+        <v-btn color="orange" @click="openPage('/notes')">
+         <v-icon>library_books</v-icon> Abrir Notas
+        </v-btn>
       </v-card-actions>
     </v-card>    
   </v-container>
