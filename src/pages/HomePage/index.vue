@@ -1,13 +1,9 @@
 <template>
-  <v-container fluid>
-    <div>
-      <v-layout row>
-        <v-flex>
-          <h1>Inicio</h1>
-        </v-flex>
-      </v-layout>
-      <v-layout row>
-        <v-flex>
+  <v-container>
+    <h1>Inicio</h1>
+    <form @submit.prevent="search">
+      <v-layout row wrap>
+        <v-flex xs12 sm5>
           <v-text-field
             id="userSearch"
             name="userSearch"
@@ -15,18 +11,16 @@
             v-model="searchText"
           ></v-text-field>
         </v-flex>
-      </v-layout>
-      <v-layout row>
-        <v-flex>
-          <v-btn 
+        <v-flex xs12 sm7>
+          <v-btn
             color="orange"
-            large block
-            @click="search">
+            type="submit">
             Pesquisar
           </v-btn>
+          <v-btn color="orange" @click="clean">Limpar Pesquisa</v-btn>
         </v-flex>
       </v-layout>
-    </div>
+    </form>
     <results-section></results-section>
   </v-container>
 </template>
