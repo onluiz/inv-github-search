@@ -1,38 +1,37 @@
 <template>
-  <v-container>
-    <back-to page="/" title="Inicio"></back-to>
-    <h2>Perfil de {{ userSearch.name }}</h2>
-    <img :src="userSearch.avatar_url" class="l-avatar"/>
-    <v-card>
-      <v-card-title>
-        <h2>Dados</h2>
-      </v-card-title>
-      <v-card-text>
-        Nome: {{ userSearch.name }} <br>
-        Username: {{ userSearch.login }} <br>
-        Seguidores: {{ userSearch.followers }} <br>
-        Seguindo: {{ userSearch.following }} <br>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn color="orange" @click="openPage('/repos')">
-          <v-icon>dashboard</v-icon> Abrir Repositórios
-        </v-btn>
-        <v-btn color="orange" @click="openPage('/notes')">
-         <v-icon>library_books</v-icon> Abrir Notas
-        </v-btn>
-      </v-card-actions>
-    </v-card>    
+  <v-container grid-list-md>
+    <v-layout row wrap>
+      <v-flex xs12 sm4 md6>
+        <img :src="userSearch.avatar_url" class="l-avatar"/>
+      </v-flex>
+      <v-flex xs12 sm8 md6 class="flex-text">
+        <v-card>
+          <v-card-title primary-title><div>
+              <h3 class="headline">{{ userSearch.name }}</h3>
+              <div>
+                Username: {{ userSearch.login }} <br>
+                Seguidores: {{ userSearch.followers }} <br>
+                Seguindo: {{ userSearch.following }} <br>
+              </div>
+            </div>
+          </v-card-title>
+          <v-card-actions>
+            <v-btn color="orange" @click="openPage('/repos')">
+              <v-icon>dashboard</v-icon> Abrir Repositórios
+            </v-btn>
+            <v-btn color="orange" @click="openPage('/notes')">
+              <v-icon>library_books</v-icon> Abrir Notas
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
 <script>
-import BackTo from '@/components/Navigation/BackTo';
-
 export default {
   name: 'PerfilPage',
-  components: {
-    BackTo,
-  },
   computed: {
     userSearch() {
       return this.$store.state.GlobalModules.SearchModule.user;
@@ -49,6 +48,11 @@ export default {
 <style scoped>
   .l-avatar {
     width: 100%;
+  }
+  @media (max-width: 600px) {
+    .flex-text {
+      margin-top: -14px;
+    }
   }
 </style>
 
