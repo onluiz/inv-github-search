@@ -65,7 +65,7 @@ export default {
     } else {
       this.$store.commit('openSnackBar', `Para adicionar notas, primeiro
         pesquise por um usuário.`);
-      this.$router.push('/');
+      this.$router.history.go(-1);
     }
   },
   methods: {

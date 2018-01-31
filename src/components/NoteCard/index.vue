@@ -1,37 +1,28 @@
 <template>
-  <v-card color="cyan darken-2" class="white--text">
-    <v-container fluid grid-list-lg>
-      <v-layout row>
-        <v-flex>
-          <div>
-            <div class="headline">{{note.title}}</div>
-            <div>
-              {{note.desc}}
-            </div>
-          </div>
-        </v-flex>
-      </v-layout>
-    </v-container>
-    <v-card-actions>
-      <v-btn color="orange" icon class="hidden-md-and-up"><v-icon>delete</v-icon></v-btn>
-      <v-btn 
-        color="orange" 
-        class="hidden-sm-and-down">
-          <v-icon>delete</v-icon> Remover Nota
-        </v-btn>
-    </v-card-actions>
-  </v-card>
+  <v-list subheader>
+    <v-subheader>Anotações</v-subheader>
+    <template v-for="(note, i) in notes">
+      <v-list-tile avatar :key="i" v-bind:key="note.title" @click="">
+        <v-list-tile-content>
+          <v-list-tile-title v-html="note.title"></v-list-tile-title>
+          <v-list-tile-sub-title v-html="note.desc"></v-list-tile-sub-title>
+        </v-list-tile-content>
+        <v-list-tile-action>
+          <v-icon color="red">delete</v-icon>
+        </v-list-tile-action>
+      </v-list-tile>
+    </template>
+  </v-list>
 </template>
 
 <script>
 export default {
   name: 'NoteCard',
   props: {
-    note: {
-      type: Object,
+    notes: {
+      type: Array,
       required: true,
     },
   },
 };
 </script>
-

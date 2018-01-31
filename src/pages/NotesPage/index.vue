@@ -1,28 +1,21 @@
 <template>
   <v-container fluid>
-    <back-to v-if="userSearch.id > 0" page="/perfil" title="Perfil"></back-to>
-    <back-to v-if="userSearch.id === 0" page="/" title="Inicio"></back-to>
     <h2>
       <v-icon>library_books</v-icon> Notas para {{ userSearch.login }}
     </h2>
     <v-layout row>
       <v-flex>
-        <v-btn 
-          color="primary"
+        <v-btn
+          color="orange"
           large block
           @click="newNote">
-          Nova Anotação
+          <v-icon>add</v-icon> Anotação
         </v-btn>
       </v-flex>
     </v-layout>
     <v-layout row>
       <v-flex>
-        <h2>Anotações</h2>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex>
-        <note-card v-for="(note, i) in notes" :key="i" :note="note"></note-card>
+        <note-card :notes="notes"></note-card>
       </v-flex>
     </v-layout>
   </v-container>
@@ -30,14 +23,12 @@
 
 <script>
 import notesLib from '@/libs/notes-lib';
-import BackTo from '@/components/Navigation/BackTo';
 import NoteCard from '@/components/NoteCard';
 
 export default {
   name: 'NotesPage',
   components: {
     NoteCard,
-    BackTo,
   },
   methods: {
     newNote() {
