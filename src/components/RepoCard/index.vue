@@ -1,13 +1,11 @@
 <template>
-  <v-card color="cyan darken-2" class="white--text">
+  <v-card color="darken-2" class="white--text">
     <v-container fluid grid-list-lg>
       <v-layout row>
         <v-flex>
           <div>
-            <div class="headline">{{repo.name}}</div>
-            <div>
-              {{repo.description}}
-            </div>
+            <a class="link headline white--text" :href="repo.html_url" target="_blank">{{repo.name}}</a>
+            <div class="grey--text">{{repo.description}}</div>
           </div>
         </v-flex>
       </v-layout>
@@ -26,4 +24,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .link {
+    text-decoration: none;
+  }
+</style>
+
 
