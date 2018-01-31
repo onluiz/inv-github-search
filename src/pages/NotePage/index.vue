@@ -2,12 +2,7 @@
   <v-container fluid>
     <v-layout row>
       <v-flex>
-        <h2>Nova anotção para o usuário Luiz Alberto</h2>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex>
-        <h2>Título</h2>
+        <h2>Nova anotção para {{ userSearch.login }}</h2>
       </v-flex>
     </v-layout>
     <v-layout row>
@@ -22,11 +17,6 @@
     </v-layout>
     <v-layout row>
       <v-flex>
-        <h2>Descrição</h2>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex>
         <v-text-field
           name="input-7-1"
           label="Label Text"
@@ -37,25 +27,21 @@
     </v-layout>
     <v-layout row>
       <v-flex>
-        <v-btn 
-          color="primary"
+        <v-btn
+          color="orange"
           large
           block
-          @click="saveNote">
+          @click="addNote">
           Salvar
         </v-btn>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex>
-        {{note.title}} <br>
-        {{note.desc}} <br>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import notesLib from '.././../libs/notes-lib';
+
 export default {
   name: 'NotePage',
   data() {
@@ -69,35 +55,25 @@ export default {
     };
   },
   computed: {
-    userSearch: {
-      get() {
-        return this.$store.state.GlobalModules.SearchModule.user;
-      },
-      set(user) {
-        this.$store.commit('setUser', user);
-      },
+    userSearch() {
+      return this.$store.state.GlobalModules.SearchModule.user;
     },
   },
-  methods: {
-    saveNote() {
-      this.prepareNote();
-      let notes = this.getFromLocalstorage();
-      if (notes) {
-        notes.push(this.note);
-      } else {
-        notes = [];
-        notes.push(this.note);
-      }
-      this.addToLocalstorage(notes);
-    },
-    addToLocalstorage(notes) {
-      localStorage.setItem('notes', JSON.stringify(notes));
-    },
-    getFromLocalstorage() {
-      return JSON.parse(localStorage.getItem('notes'));
-    },
-    prepareNote() {
+  mounted() {
+    if (this.userSearch.id > 0) {
       this.note.idUser = this.userSearch.id;
+    } else {
+      this.$store.commit('openSnackBar', `Para adicionar notas, primeiro
+        pesquise por um usuário.`);
+      this.$router.push('/');
+    }
+  },
+  methods: {
+    addNote() {
+      notesLib.addNote(this.note, () => {
+        this.$store.dispatch('openSnackBar', 'Nota adicionada com sucesso.');
+        this.$router.history.go(-1);
+      });
     },
   },
 };
