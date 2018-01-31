@@ -1,5 +1,6 @@
 <template>
-  <v-container grid-list-md>
+  <v-container>
+    <h1>Perfil</h1>
     <v-layout row wrap>
       <v-flex xs12 sm4 md6>
         <img :src="userSearch.avatar_url" class="l-avatar"/>

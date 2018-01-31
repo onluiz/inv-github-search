@@ -1,9 +1,10 @@
 <template>
-  <v-container grid-list-xs>
+  <v-container>
+    <h1>Repositórios</h1>
     <v-list clas="list" two-line subheader>
-      <v-subheader>{{ userSearch.name }}</v-subheader>
-      <template v-for="(repo, index) in reposSearch">
-        <v-divider v-if="index > 0" :key="reposSearch.name"></v-divider>
+      <v-subheader><h3>Repositórios de {{ userSearch.login }}</h3></v-subheader>
+      <template v-for="repo in reposSearch">
+        <v-divider v-if="repo.id > 0" :key="repo.id"></v-divider>
         <v-list-tile v-bind:key="repo.name" :href="repo.html_url" target="_blank">
           <v-list-tile-content>
             <v-list-tile-title>{{repo.name}}</v-list-tile-title>

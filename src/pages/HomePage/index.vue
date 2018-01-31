@@ -15,9 +15,13 @@
           <v-btn
             color="orange"
             type="submit">
+            <v-icon>search</v-icon>
             Pesquisar
           </v-btn>
-          <v-btn color="orange" @click="clean">Limpar Pesquisa</v-btn>
+          <v-btn color="orange" @click="clean">
+            <v-icon>clear_all</v-icon>
+            Limpar
+          </v-btn>
         </v-flex>
       </v-layout>
     </form>

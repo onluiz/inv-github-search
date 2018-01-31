@@ -11,6 +11,15 @@
         <div class="headline">{{ userSearch.name }}</div>
       </div>
     </v-card-title>
+    <v-card-actions>
+      <v-btn 
+        class="btn-test" 
+        color="orange" 
+        @click="$router.push('/perfil')">
+          <v-icon>assignment_ind</v-icon>
+          Abrir Perfil
+      </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -29,3 +38,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .btn-test {
+    width: 100% !important;
+  }
+</style>
