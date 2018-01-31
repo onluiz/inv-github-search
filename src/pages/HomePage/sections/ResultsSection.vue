@@ -1,9 +1,12 @@
 <template>
-  <div>
-    <div v-if="userSearch.id > 0">
-      <h3>Usuário Encontrado:</h3>
-      <user-mini-card></user-mini-card>
-    </div>
+  <div v-if="userSearch.id > 0">
+    <v-container grid-list-xs>
+      <v-layout>
+        <v-flex xs12 sm6>
+          <user-mini-card></user-mini-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </div>
 </template>
 
