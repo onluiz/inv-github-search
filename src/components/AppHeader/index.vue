@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import logoGitHubMark32 from '../../assets/images/GitHub-Mark/PNG/GitHub-Mark-32px.png';
+import logoGitHubMark32 from '@/assets/images/GitHub-Mark/PNG/GitHub-Mark-32px.png';
 
 export default {
   name: 'AppHeader',
