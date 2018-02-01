@@ -11,6 +11,9 @@ Os requisitos desenvolvidos são:
  - Caso nenhum resultado encontrado, uma página de erro 404  deve ser exibida para o usuário
  - A visualização dos repositórios do usuário deve ser paginada
 
+## Imagens
+![enter image description here](https://github.com/onluiz/inv-github-search/blob/master/static/images/GitSearch/app_mob_2.png?raw=true)![enter image description here](https://github.com/onluiz/inv-github-search/blob/master/static/images/GitSearch/app_mob_1.png?raw=true)
+
 ## Tecnologias
 Entre as opções oferecidas, a tecnologia escolhida foi o Vue.js. Abaixo é possível verificar as principais tecnologias utilizadas:
 
