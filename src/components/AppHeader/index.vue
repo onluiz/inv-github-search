@@ -10,8 +10,8 @@
         </v-toolbar-title>
       </v-slide-y-transition>
       <v-spacer/>
-      <a class="link-github" :href="urlGithub">
-        <img :src="logoGitHubMark32"/>
+      <a class="c-github-login" :href="urlGithub">
+        <h3 class="o-labe__github-login">Login</h3>
       </a>
     </v-toolbar>
     <v-navigation-drawer
@@ -45,8 +45,10 @@ export default {
     return {
       drawer: false,
       items: [
-        { title: 'Inicio', page: '/home', icon: 'dashboard' },
+        { title: 'Inicio', page: '/home', icon: 'home' },
         { title: 'Anotações', page: '/notes', icon: 'library_books' },
+        { title: 'Nova Anotação', page: '/notes/new', icon: 'exposure_plus_1' },
+        { title: 'Repositórios', page: '/repos', icon: 'dashboard' },
       ],
       urlGithub: 'https://github.com/login/oauth/authorize?client_id=2a4d09cfa80c8fdce2b6',
       logoGitHubMark32,
@@ -69,8 +71,10 @@ export default {
 </script>
 
 <style>
-  .link-github img {
-    height: 40px;
-    vertical-align: middle;
+  .c-github-login {
+    text-decoration: none;
+  }
+  .o-labe__github-login {
+    color: white;
   }
 </style>
