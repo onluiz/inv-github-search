@@ -39,7 +39,13 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('setUserRepos');
+    if (this.userSearch.id === 0) {
+      this.$store.commit('openSnackBar', `Para ver repositórios, primeiro
+        pesquise por um usuário.`);
+      this.$router.history.go(-1);
+    } else {
+      this.$store.dispatch('setUserRepos');
+    }
   },
   methods: {
     nextPage() {

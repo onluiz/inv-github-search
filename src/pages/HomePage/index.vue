@@ -45,7 +45,7 @@ export default {
   },
   data() {
     return {
-      searchText: 'onluiz',
+      searchText: '',
     };
   },
   computed: {

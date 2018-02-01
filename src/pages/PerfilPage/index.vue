@@ -18,10 +18,10 @@
           </v-card-title>
           <v-card-actions>
             <v-btn color="orange" @click="openPage('/repos')">
-              <v-icon>dashboard</v-icon> Abrir Repositórios
+              <v-icon>dashboard</v-icon> Repositórios
             </v-btn>
             <v-btn color="orange" @click="openPage('/notes')">
-              <v-icon>library_books</v-icon> Abrir Notas
+              <v-icon>library_books</v-icon> Notas
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -42,6 +42,13 @@ export default {
     openPage(page) {
       this.$router.push(page);
     },
+  },
+  mounted() {
+    if (this.userSearch.id === 0) {
+      this.$store.commit('openSnackBar', `Para ver um perfil, primeiro
+        pesquise por um usuário.`);
+      this.$router.history.go(-1);
+    }
   },
 };
 </script>
