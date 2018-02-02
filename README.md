@@ -5,7 +5,7 @@ Olá! O GitSearch é um aplicativo criado para trabalhar com a api do GitHub (v3
 
 ## Acesso
 Para ver o app basta acessar esse link:
-https://onluiz.github.io/inv-github-search/docs/#/home
+https://onluiz.github.io/inv-github-search/#/home
 
 ## Requisitos
 Os requisitos desenvolvidos são:
@@ -85,13 +85,16 @@ O projeto citado no item anterior está armazenado [AQUI!](https://github.com/on
 As anotações realizadas pelo usuário ficam armazenadas no localstorage.
 
 ## ESLint Airbnb
-Para melhor estruturação e  padronização de código, utilizei o Lint do AirBnb. Sua documentação bem descrita e aceitação por outro desenvolvedores foram o motivo para tal escolha.
+Para melhor estruturação e  padronização de código, utilizei o Lint do AirBnb. Sua documentação bem descrita e aceitação por outrox desenvolvedores foram o motivo para tal escolha.
 
 ## Heroku
+O server (que cuida da troca do código GitHub pelo token GitHub deixando o segredo... em segredo) está hospedado no Heroku.
+
+Porém eu acabei desativando a autenticação por alguns problemas técnicos. =P
 
 ## GitHub Pages
 O aplicativo ficou armazenado no GitHub pages (diretório 'docs').
-Para verificar o resultado, basta clicar [AQUI!](https://onluiz.github.io/inv-github-search/docs/)
+Para verificar o resultado, basta clicar [AQUI!](https://onluiz.github.io/inv-github-search/#/home)
 
 ## Build Setup
 
