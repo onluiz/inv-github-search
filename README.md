@@ -3,6 +3,10 @@
 
 Olá! O GitSearch é um aplicativo criado para trabalhar com a api do GitHub (v3) com a ideia de facilitar a pesquisa e anotações de usuários do próprio (GitHub). Este é um aplicativo resultante do desafio involves.
 
+## Acesso
+Para ver o app basta acessar esse link:
+https://onluiz.github.io/inv-github-search/docs/#/home
+
 ## Requisitos
 Os requisitos desenvolvidos são:
 
