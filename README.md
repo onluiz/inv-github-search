@@ -78,6 +78,9 @@ Para realizar a troca do código recebido por um token é necessário utilizar o
  - NodeJS retorna o token válido para o App Vue
  - App Vue recebe  o token e armazena no localstorage para ser utilizado nas requisições
 
+### Projeto Nodejs
+O projeto citado no item anterior está armazenado [AQUI!](https://github.com/onluiz/inv-github-search-server)
+
 ## Anotações e Localstorage
 As anotações realizadas pelo usuário ficam armazenadas no localstorage.
 
@@ -87,6 +90,8 @@ Para melhor estruturação e  padronização de código, utilizei o Lint do AirB
 ## Heroku
 
 ## GitHub Pages
+O aplicativo ficou armazenado no GitHub pages (diretório 'docs').
+Para verificar o resultado, basta clicar [AQUI!](https://onluiz.github.io/inv-github-search/docs/)
 
 ## Build Setup
 
@@ -111,6 +116,8 @@ npm test
 ```
 ## Server para Testar
 No diretório src/server, existe um pequeno servidor Node apontando para o diretório /dist, onde o resultado do build é armazenado. Rode esse servidor para visualizar como sua aplicação ficou após o build e evitar ter que fazer vários deploys.
+
+Porém, na maioria dos casos, apenas executar o index.html no navegador já será o suficiente.
 
 ## Melhorias
 
