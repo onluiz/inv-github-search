@@ -7,5 +7,5 @@ const path = require('path')
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/', express.static(path.join(__dirname, '../dist')))
+app.use('/', express.static(path.join(__dirname, '../docs')))
 app.listen(3001, () => console.log('Example app listening on port 3001!'))
